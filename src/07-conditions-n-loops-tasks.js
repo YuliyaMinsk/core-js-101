@@ -138,8 +138,13 @@ function isTriangle(a, b, c) {
  *   { top:20, left:20, width: 20, height: 20 }    =>  false
  *
  */
-function doRectanglesOverlap(/* rect1, rect2 */) {
-  throw new Error('Not implemented');
+function doRectanglesOverlap(rect1, rect2) {
+  return !(
+    (rect1.top > rect2.top + rect2.width)
+    || (rect2.top > rect1.top + rect1.width)
+    || (rect1.left > rect2.left + rect2.height)
+    || (rect2.left > rect1.left + rect1.height)
+  );
 }
 
 
@@ -169,8 +174,12 @@ function doRectanglesOverlap(/* rect1, rect2 */) {
  *   { center: { x:0, y:0 }, radius:10 },  { x:10, y:10 }   => false
  *
  */
-function isInsideCircle(/* circle, point */) {
-  throw new Error('Not implemented');
+function isInsideCircle(circle, point) {
+  const line = Math.sqrt((circle.center.x - point.x) ** 2 + (circle.center.y - point.y) ** 2);
+  if (line < circle.radius) {
+    return true;
+  }
+  return false;
 }
 
 
@@ -185,8 +194,12 @@ function isInsideCircle(/* circle, point */) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
-function findFirstSingleChar(/* str */) {
-  throw new Error('Not implemented');
+function findFirstSingleChar(str) {
+  const array = str.split('');
+  for (let i = 0; i < array.length; i += 1) {
+    if (array.filter((el) => el === array[i]).length === 1) return array[i];
+  }
+  return null;
 }
 
 
